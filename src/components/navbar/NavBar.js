@@ -1,11 +1,9 @@
-import React from 'react'
+import React from "react";
+import AppBar from "material-ui/AppBar";
+
 
 const NavBar = () => {
-    return (
-        <div>
-            
-        </div>
-    )
-}
+  return <AppBar title="PixaBay Finder" />;
+};
 
-export default NavBar
+export default NavBar;
