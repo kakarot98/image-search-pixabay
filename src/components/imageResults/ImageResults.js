@@ -26,7 +26,7 @@ const ImageResults = ({ images }) => {
               }
               actionIcon={
                 <IconButton>
-                  <ZoomIn color="aqua" />
+                  <ZoomIn style={{color: "white"}} />
                 </IconButton>
               }
             />
