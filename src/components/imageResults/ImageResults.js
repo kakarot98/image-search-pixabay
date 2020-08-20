@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   GridList,
   GridListTileBar,
@@ -10,6 +10,17 @@ import {
 import { ZoomIn } from "@material-ui/icons";
 
 const ImageResults = ({ images }) => {
+  const [open, setOpen] = useState(false);
+  const [currentImage, setCurrentImage] = useState("");
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+  const handleOpen = (img) => {
+    setOpen(true);
+    setCurrentImage(img);
+  };
+
   let imageContentList;
   if (images) {
     imageContentList = (
@@ -25,8 +36,8 @@ const ImageResults = ({ images }) => {
                 </span>
               }
               actionIcon={
-                <IconButton>
-                  <ZoomIn style={{color: "white"}} />
+                <IconButton onClick={() => handleOpen(img.largeImageURL)}>
+                  <ZoomIn style={{ color: "white" }} />
                 </IconButton>
               }
             />
@@ -38,7 +49,16 @@ const ImageResults = ({ images }) => {
     imageContentList = null;
   }
 
-  return <div>{imageContentList}</div>;
+  const actions = [<Button onClick={() => handleClose()} variant="text" style={{label:'Close'}}>Close</Button>];
+
+  return (
+    <div>
+      {imageContentList}
+      <Dialog actions={actions} open={open} onClose={() => handleClose()}>
+        <img src={currentImage} alt="" style={{ width: "100%" }} />
+      </Dialog>
+    </div>
+  );
 };
 
 export default ImageResults;
