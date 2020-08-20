@@ -2,6 +2,7 @@ import React from "react";
 import {
   GridList,
   GridListTileBar,
+  GridListTile,
   IconButton,
   Dialog,
   Button,
@@ -14,22 +15,22 @@ const ImageResults = ({ images }) => {
     imageContentList = (
       <GridList cols={3}>
         {images.map((img) => (
-          <GridListTileBar
-            title={img.tags}
-            key={img.id}
-            subtitle={
-              <span>
-                by <strong>{img.user}</strong>
-              </span>
-            }
-            actionIcon={
-              <IconButton>
-                <ZoomIn color="aqua" />
-              </IconButton>
-            }
-          >
-            <img src={img.largeImageURL} alt="" />
-          </GridListTileBar>
+          <GridListTile key={img.id}>
+            <img src={img.largeImageURL} alt={img.tags} />
+            <GridListTileBar
+              title={img.tags}
+              subtitle={
+                <span>
+                  by <strong>{img.user}</strong>
+                </span>
+              }
+              actionIcon={
+                <IconButton>
+                  <ZoomIn color="aqua" />
+                </IconButton>
+              }
+            />
+          </GridListTile>
         ))}
       </GridList>
     );
